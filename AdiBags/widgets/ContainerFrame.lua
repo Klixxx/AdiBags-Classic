@@ -171,11 +171,18 @@ function containerProto:OnCreate(name, isBank, bagObject)
 	closeButton:SetPoint("TOPRIGHT", -2, -2)
 	addon.SetupTooltip(closeButton, L["Close"])
 	closeButton:SetFrameLevel(frameLevel)
+	if IsAddOnLoaded("ElvUI")  then
+		ElvUI[1]:GetModule("Skins"):HandleCloseButton(self.CloseButton)
+	end
 
 	local bagSlotButton = CreateFrame("CheckButton", nil, self)
 	bagSlotButton:SetNormalTexture([[Interface\Buttons\Button-Backpack-Up]])
-	bagSlotButton:SetCheckedTexture([[Interface\Buttons\CheckButtonHilight]])
-	bagSlotButton:GetCheckedTexture():SetBlendMode("ADD")
+	if IsAddOnLoaded("ElvUI") then
+		ElvUI[1]:GetModule("Skins"):HandleIcon(bagSlotButton:GetNormalTexture(), true)
+	else
+		bagSlotButton:SetCheckedTexture([[Interface\Buttons\CheckButtonHilight]])
+		bagSlotButton:GetCheckedTexture():SetBlendMode("ADD")
+	end
 	bagSlotButton:SetScript('OnClick', BagSlotButton_OnClick)
 	bagSlotButton.panel = bagSlotPanel
 	bagSlotButton:SetWidth(18)
@@ -188,10 +195,17 @@ function containerProto:OnCreate(name, isBank, bagObject)
 	headerLeftRegion:AddWidget(bagSlotButton, 50)
 
 	local searchBox = CreateFrame("EditBox", self:GetName().."SearchBox", self, "BagSearchBoxTemplate")
-	searchBox:SetSize(130, 20)
+	if IsAddOnLoaded("ElvUI") then
+		searchBox:SetSize(130, 18)
+	else
+		searchBox:SetSize(130, 20)
+	end
 	searchBox:SetFrameLevel(frameLevel)
 	headerRightRegion:AddWidget(searchBox, -10, 130, 0, -1)
 	tinsert(_G.ITEM_SEARCHBAR_LIST, searchBox:GetName())
+	if IsAddOnLoaded("ElvUI") then
+		ElvUI[1]:GetModule("Skins"):HandleEditBox(searchBox)
+	end
 
 	local title = self:CreateFontString(self:GetName().."Title","OVERLAY")
 	self.Title = title
@@ -254,6 +268,9 @@ function containerProto:CreateModuleButton(letter, order, onClick, tooltip)
 	button:SetSize(20, 20)
 	button:SetScript("OnClick", onClick)
 	button:RegisterForClicks("AnyUp")
+	if IsAddOnLoaded("ElvUI") then
+		ElvUI[1]:GetModule("Skins"):HandleButton(button)
+	end
 	if order then
 		self:AddHeaderWidget(button, order)
 	end
@@ -481,6 +498,11 @@ function containerProto:UpdateSkin()
 		self:SetBackdropBorderColor(0.5, 0.5, 0.5, a)
 	else
 		self:SetBackdropBorderColor(0.5+(0.5*r/m), 0.5+(0.5*g/m), 0.5+(0.5*b/m), a)
+	end
+	
+	if IsAddOnLoaded("ElvUI") then
+		self:StripTextures()
+		self:SetTemplate("Transparent")
 	end
 end
 

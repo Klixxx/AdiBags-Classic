@@ -422,6 +422,11 @@ local function Panel_UpdateSkin(self)
 	else
 		self:SetBackdropBorderColor(0.5+(0.5*r/m), 0.5+(0.5*g/m), 0.5+(0.5*b/m), a)
 	end
+	
+	if IsAddOnLoaded("ElvUI") then
+		self:StripTextures()
+		self:SetTemplate("Transparent")
+	end
 end
 
 local function Panel_ConfigChanged(self, event, name)
@@ -461,6 +466,13 @@ function addon:CreateBagSlotPanel(container, name, bags, isBank)
 			button:SetParent(self)
 			button:SetPoint("TOPLEFT", x, -TOP_PADDING)
 			button:Show()
+			if IsAddOnLoaded("ElvUI") then
+				button:SetTemplate(nil, true)
+				button:StyleButton()
+				button:SetNormalTexture(nil)
+				button.icon:SetTexCoord(unpack(ElvUI[1].TexCoords))
+				button.icon:SetInside()
+			end
 			x = x + ITEM_SIZE + ITEM_SPACING
 			tinsert(self.buttons, button)
 		end
