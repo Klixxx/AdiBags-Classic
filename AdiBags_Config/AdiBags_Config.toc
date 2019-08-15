@@ -1,8 +1,8 @@
 ## Interface: 11302
 
 ## Title: AdiBags Configuration
-## Notes: Adirelle's bag addon.
-## Author: Adirelle
+## Notes: Adirelle's bag addon for WoW Classic.
+## Author: Adirelle, Klix
 ## Version: 0.0.1
 ## X-Date: 
 ## X-Part-Of: AdiBags
