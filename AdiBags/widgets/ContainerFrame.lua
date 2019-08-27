@@ -503,6 +503,9 @@ function containerProto:UpdateSkin()
 	if IsAddOnLoaded("ElvUI") then
 		self:StripTextures()
 		self:SetTemplate("Transparent")
+		if IsAddOnLoaded("ElvUI_KlixUI") then
+			self:Styling()
+		end
 	end
 end
 
