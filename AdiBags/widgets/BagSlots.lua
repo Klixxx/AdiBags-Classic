@@ -426,6 +426,9 @@ local function Panel_UpdateSkin(self)
 	if IsAddOnLoaded("ElvUI") then
 		self:StripTextures()
 		self:SetTemplate("Transparent")
+		if IsAddOnLoaded("ElvUI_KlixUI") then
+			self:Styling()
+		end
 	end
 end
 
@@ -472,6 +475,9 @@ function addon:CreateBagSlotPanel(container, name, bags, isBank)
 				button:SetNormalTexture(nil)
 				button.icon:SetTexCoord(unpack(ElvUI[1].TexCoords))
 				button.icon:SetInside()
+				if IsAddOnLoaded("ElvUI_KlixUI") then
+					button:CreateIconShadow()
+				end
 			end
 			x = x + ITEM_SIZE + ITEM_SPACING
 			tinsert(self.buttons, button)

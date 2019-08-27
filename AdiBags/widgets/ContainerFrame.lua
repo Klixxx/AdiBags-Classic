@@ -179,6 +179,12 @@ function containerProto:OnCreate(name, isBank, bagObject)
 	bagSlotButton:SetNormalTexture([[Interface\Buttons\Button-Backpack-Up]])
 	if IsAddOnLoaded("ElvUI") then
 		ElvUI[1]:GetModule("Skins"):HandleIcon(bagSlotButton:GetNormalTexture(), true)
+		if IsAddOnLoaded("ElvUI_KlixUI") then
+			bagSlotButton:CreateIconShadow()
+			if ElvUI[1].db.KlixUI.general.iconShadow and not IsAddOnLoaded("Masque") then
+				bagSlotButton.ishadow:SetInside(bagSlotButton, 0, 0)
+			end
+		end
 	else
 		bagSlotButton:SetCheckedTexture([[Interface\Buttons\CheckButtonHilight]])
 		bagSlotButton:GetCheckedTexture():SetBlendMode("ADD")

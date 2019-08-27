@@ -316,6 +316,9 @@ function buttonProto:Update()
 	self:UpdateCooldown()
 	self:UpdateLock()
 	self:UpdateNew()
+	if IsAddOnLoaded("ElvUI_KlixUI") then
+		self:UpdateKlixStyling()
+	end
 	if self.UpdateSearch then
 		self:UpdateSearch()
 	end
@@ -361,6 +364,10 @@ end
 
 function buttonProto:UpdateNew()
 	self.BattlepayItemTexture:SetShown(IsBattlePayItem(self.bag, self.slot))
+end
+
+function buttonProto:UpdateKlixStyling()
+	self:CreateIconShadow()
 end
 
 local function GetBorder(bag, slot, settings)
