@@ -22,7 +22,7 @@
 ## Title: AdiBags
 ## Notes: Adirelle's bag addon for WoW Classic.
 ## Author: Adirelle, Klix
-## Version: 0.0.1
+## Version: 0.0.2
 ## SavedVariables: AdiBagsDB
 ## X-Date: 
 ## X-License: GPL v3

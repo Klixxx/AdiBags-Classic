@@ -271,7 +271,7 @@ local function GetOptions()
 	end
 	options = {
 		--@debug@
-		name = addonName..' DEV',
+		name = addonName..' v0.0.2',
 		--@end-debug@
 		--[===[@non-debug@
 		name = addonName..' @project-version@',
