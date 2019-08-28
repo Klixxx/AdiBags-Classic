@@ -445,6 +445,7 @@ local function GetOptions()
 						type = 'group',
 						inline = true,
 						order = 20,
+						hidden = function() return IsAddOnLoaded("ElvUI") end,
 						disabled = function() return IsAddOnLoaded("ElvUI") end,
 						args = {
 							texture = {
